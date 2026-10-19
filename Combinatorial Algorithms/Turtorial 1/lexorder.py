@@ -1,21 +1,16 @@
+# 定义 rank 函数：输入集合 A 和全集元素个数 n，返回 A 在这里采用的二进制/字典序编号。
 def rank(A:set,n:int) -> int:
-    """
-    the tank of A in lexicographic order(this is a comment)
-    """
+    # 按字典序/二进制位权计算集合 A 的编号；输入 A 中的元素应处于 0 到 n-1。
 
-    """
-    require:
-        A in 2^[0,n)
-    """
-
+    # 从编号 0 开始累加，之后每个元素 i 都对应权重 2 的 i 次方。
     r:int =0
 
+    # 检查从 0 到 n-1 的每一个可能元素，决定对应二进制位是否置 1。
     for i in range(n):
-    
+        # 若 i 在集合 A 中，布尔值 True 会按整数 1 参与计算；否则按 0 计算。
         r = r + (2**i) * (i in A)
 
+    # 返回所有已设置二进制位的权重之和，即集合的唯一整数编码。
     return r
 
-    """
-    ensure: r = int(X(A))
-    """
+    # 后置条件：返回值 r 是整数，且每个 i∈A 对应二进制位权重 2**i。
